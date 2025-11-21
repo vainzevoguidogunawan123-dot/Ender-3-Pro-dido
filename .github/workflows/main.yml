@@ -17,15 +17,15 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      - name: Install PlatformIO
-        run: pip install platformio
+      - name: Install PlatformIO Core
+        uses: platformio/action-install-pio@v1
 
       - name: Build firmware
-        run: platformio run
+        run: pio run   # <-- lebih stabil daripada action-core
 
-      - name: Upload firmware artifact (HEX or BIN)
+      - name: Upload firmware artifact
         uses: actions/upload-artifact@v3
         with:
           name: firmware
