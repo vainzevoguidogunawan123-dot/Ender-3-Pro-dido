@@ -2,17 +2,21 @@ name: Build Marlin Firmware
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
+  pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Install PlatformIO
-        run: pip install platformio
+    - name: Install PlatformIO
+      run: |
+        pip install platformio
 
-      - name: Build Firmware
-        run: platformio run -e STM32F103RET6_creality
+    - name: Build Marlin
+      run: |
+        platformio run
